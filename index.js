@@ -1,29 +1,31 @@
-var selector = selector;
+function getFirstSelector(s) {
+  return document.querySelector(s)
+}
 
-function getFirstSelector(selector) {
-  const sel1 = document.querySelector(selector);
-return sel1 }
-
-var lis = lis;
-function nestedTarget()  {         //  pull  .target out of #nested
- //const lis = document.querySelector('#nested').document.querySelector('.target');
-  // const lis = document.getElementById('nested').document.getElementsByTagName('target');
-  const lis = document.querySelector('#nested .target');
-
-  //'<div class="target">...</div>';
-  //document.getElementById('app').querySelectorAll('.target #nested');
-
- // var i = 0;
- //for (let i = 0; i < lis.length; i++) {    lis[i].innerHTML = (i + 1).toString()  }
-
- // id   --> #   document.querySelector('#nested')
- // class --> .  document.querySelector('.target')
-return lis };
-
-function increaseRankBy(n)  {
-   const sel3 = document.querySelector(n);
-return sel3; }
+function nestedTarget() {
+  return document.querySelector('#nested .target')
+}
 
 function deepestChild() {
-   const sel4 =  document.querySelectorAll();
-return sel4; }
+  let node = document.getElementById('grand-node')
+  let nextNode = node.children[0]
+
+  while (nextNode) {
+    node = nextNode
+    nextNode = node.children[0]
+  }
+
+  return node
+}
+
+function increaseRankBy(n) {
+  const rankedLists = document.querySelectorAll('.ranked-list')
+
+  for (let i = 0, l = rankedLists.length; i < l; i++) {
+    let children = rankedLists[i].children
+
+    for (let j = 0, k = children.length; j < k; j++) {
+      children[j].innerHTML = parseInt(children[j].innerHTML) + n
+    }
+  }
+}
